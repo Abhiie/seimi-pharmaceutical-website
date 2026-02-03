@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone, Mail, Facebook, Twitter, Instagram, Linkedin, Search } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -21,7 +22,7 @@ export function Navbar() {
     { href: "#about", label: "About Us" },
     { href: "#values", label: "Core Values" },
     { href: "#rnd", label: "R&D" },
-    { href: "#products", label: "Products" },
+    { href: "/products", label: "Products" },
     { href: "#contact", label: "Contact" },
   ]
 
@@ -64,13 +65,14 @@ export function Navbar() {
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex flex-col">
-              <span className="font-serif text-2xl font-bold tracking-tight text-primary transition-colors group-hover:text-primary/80">
-                seimei
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-primary transition-colors">
-                Innovation
-              </span>
+            <div className="relative h-12 w-32 md:h-14 md:w-40">
+              <Image
+                src="/images/logo.png"
+                alt="Seimi Innovation"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </Link>
 
