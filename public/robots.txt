@@ -1,0 +1,12 @@
+# Seimi Innovation - Robots.txt
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.seimi-innovation.com/sitemap.xml
+
+# Crawl-delay (optional, can help with server load)
+# User-agent: *
+# Crawl-delay: 1

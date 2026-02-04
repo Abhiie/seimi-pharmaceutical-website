@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
@@ -25,7 +25,7 @@ const blogs = [
     }
 ]
 
-const container = {
+const container: Variants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
@@ -35,7 +35,7 @@ const container = {
     }
 }
 
-const item = {
+const item: Variants = {
     hidden: { opacity: 0, y: 50 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 }
@@ -71,10 +71,11 @@ export function BlogSection() {
                             variants={item}
                             whileHover={{ y: -10, transition: { duration: 0.3 } }}
                             className="group flex flex-col overflow-hidden rounded-2xl bg-card transition-all hover:shadow-2xl hover:shadow-primary/5"
+                            aria-label={`Read blog post: ${blog.title}`}
                         >
                             <div className="relative aspect-[4/3] w-full bg-secondary/20 overflow-hidden">
                                 <div className="absolute inset-0 bg-secondary/30 flex items-center justify-center">
-                                    <span className="text-muted-foreground tezt-sm">Image Placeholder</span>
+                                    <span className="text-muted-foreground text-sm">Image Placeholder</span>
                                 </div>
                                 {/* Scale Effect on Hover */}
                                 <div className="absolute inset-0 bg-primary/0 transition-colors group-hover:bg-primary/5" />

@@ -293,6 +293,7 @@ function ProductModal({
           className="absolute right-4 top-4 rounded-full bg-secondary p-2 text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
         >
           <X className="h-5 w-5" />
+          <span className="sr-only">Close modal</span>
         </button>
 
         <div className="flex flex-col gap-8 md:flex-row md:gap-12">
@@ -459,6 +460,7 @@ export function ProductShowcase() {
               key={tab.value}
               type="button"
               onClick={() => setFilter(tab.value as typeof filter)}
+              aria-pressed={filter === tab.value}
               className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all ${filter === tab.value
                 ? "bg-primary text-primary-foreground"
                 : "bg-secondary text-secondary-foreground hover:bg-secondary/80"

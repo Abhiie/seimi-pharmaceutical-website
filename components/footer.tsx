@@ -67,13 +67,14 @@ export function Footer() {
             {/* Social links */}
             <div className="flex gap-4">
               {[
-                { icon: <Instagram className="h-5 w-5" />, href: "#" },
-                { icon: <Facebook className="h-5 w-5" />, href: "#" },
-                { icon: <Linkedin className="h-5 w-5" />, href: "#" },
+                { icon: <Instagram className="h-5 w-5" />, href: "#", label: "Instagram" },
+                { icon: <Facebook className="h-5 w-5" />, href: "#", label: "Facebook" },
+                { icon: <Linkedin className="h-5 w-5" />, href: "#", label: "LinkedIn" },
               ].map((social, index) => (
                 <Link
                   key={index}
                   href={social.href}
+                  aria-label={`Follow us on ${social.label}`}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground"
                 >
                   {social.icon}

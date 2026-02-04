@@ -43,12 +43,12 @@ export function Navbar() {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3 border-r border-primary-foreground/20 pr-4">
-              <Link href="#" className="hover:text-white/80 transition-colors"><Facebook className="h-3 w-3" /></Link>
-              <Link href="#" className="hover:text-white/80 transition-colors"><Twitter className="h-3 w-3" /></Link>
-              <Link href="#" className="hover:text-white/80 transition-colors"><Instagram className="h-3 w-3" /></Link>
-              <Link href="#" className="hover:text-white/80 transition-colors"><Linkedin className="h-3 w-3" /></Link>
+              <Link href="#" aria-label="Follow us on Facebook" className="hover:text-white/80 transition-colors"><Facebook className="h-3 w-3" /></Link>
+              <Link href="#" aria-label="Follow us on Twitter" className="hover:text-white/80 transition-colors"><Twitter className="h-3 w-3" /></Link>
+              <Link href="#" aria-label="Follow us on Instagram" className="hover:text-white/80 transition-colors"><Instagram className="h-3 w-3" /></Link>
+              <Link href="#" aria-label="Follow us on LinkedIn" className="hover:text-white/80 transition-colors"><Linkedin className="h-3 w-3" /></Link>
             </div>
-            <div className="flex items-center gap-2 cursor-pointer hover:text-white/80 transition-colors">
+            <div className="flex items-center gap-2 cursor-pointer hover:text-white/80 transition-colors" role="search" aria-label="Search site">
               <Search className="h-3 w-3" />
               <span>Search</span>
             </div>
@@ -63,12 +63,12 @@ export function Navbar() {
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? "glass top-0 py-3 shadow-sm" : "bg-transparent top-8 py-6"
           }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-2 group">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8" aria-label="Main navigation">
+          <Link href="/" className="flex items-center gap-2 group" aria-label="Seimi Innovation Home">
             <div className="relative h-12 w-32 md:h-14 md:w-40">
               <Image
                 src="/images/logo.png"
-                alt="Seimi Innovation"
+                alt="Seimi Innovation Logo"
                 fill
                 className="object-contain"
                 priority
@@ -101,6 +101,9 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Toggle mobile menu"
             className="rounded-lg p-2 text-foreground md:hidden hover:bg-secondary transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -111,11 +114,15 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-50 bg-background md:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile menu"
           >
             <div className="flex justify-between items-center p-6 border-b">
               <div className="flex flex-col">
@@ -126,6 +133,7 @@ export function Navbar() {
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 rounded-full hover:bg-secondary text-foreground"
+                aria-label="Close mobile menu"
               >
                 <X size={24} />
               </button>
