@@ -100,7 +100,7 @@ export function Hero() {
 
           {/* Infinite Marquee Product showcase */}
           <div className="relative mx-auto w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
-            <motion.div 
+            <motion.div
               className="flex gap-12 md:gap-20"
               animate={{ x: [0, -100 * products.length * 2] }} // Adjust based on estimated width logic or percentage
               transition={{
@@ -119,8 +119,8 @@ export function Hero() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 + index * 0.05 }}
-                  whileHover={{ 
-                    scale: 1.15, 
+                  whileHover={{
+                    scale: 1.15,
                     rotateY: 10,
                     filter: "brightness(1.1)",
                     zIndex: 10,
@@ -133,8 +133,11 @@ export function Hero() {
                       src={product.src || "/placeholder.svg"}
                       alt={product.alt}
                       fill
-                      className="object-contain drop-shadow-2xl transition-all duration-300"
+                      className="object-contain drop-shadow-2xl transition-all duration-500 opacity-0"
+                      onLoadingComplete={(img) => img.classList.remove("opacity-0")}
                       sizes="(max-width: 768px) 160px, 220px"
+                      priority={index < 4}
+                      loading={index < 4 ? "eager" : "lazy"}
                     />
                     {/* Reflection effect */}
                     <div className="absolute -bottom-8 left-0 right-0 h-8 bg-gradient-to-b from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100 blur-sm transform scale-y-[-1]" />

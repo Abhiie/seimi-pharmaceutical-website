@@ -9,25 +9,25 @@ export function AboutSection() {
             icon: <ShieldCheck className="h-8 w-8" />,
             title: "Quality Assurance",
             description: "Rigorous standards at every step of manufacturing.",
-            color: "border-blue-500/20 bg-blue-500/10 text-blue-500",
+            color: "border-blue-500/40 bg-blue-500/15 text-blue-600 shadow-blue-500/10",
         },
         {
             icon: <Microscope className="h-8 w-8" />,
             title: "Research Driven",
             description: "Evidence-based formulations supported by clinical data.",
-            color: "border-purple-500/20 bg-purple-500/10 text-purple-500",
+            color: "border-purple-500/40 bg-purple-500/15 text-purple-600 shadow-purple-500/10",
         },
         {
             icon: <HeartHandshake className="h-8 w-8" />,
             title: "Customer Wellness",
             description: "Dedicated to improving lives through better health.",
-            color: "border-green-500/20 bg-green-500/10 text-green-500",
+            color: "border-green-500/40 bg-green-500/15 text-green-600 shadow-green-500/10",
         },
         {
             icon: <Leaf className="h-8 w-8" />,
             title: "Ethical Standards",
             description: "Transparency and integrity in all our operations.",
-            color: "border-amber-500/20 bg-amber-500/10 text-amber-500",
+            color: "border-amber-500/40 bg-amber-500/15 text-amber-600 shadow-amber-500/10",
         },
     ]
 
@@ -88,15 +88,15 @@ export function AboutSection() {
                                         opacity: { duration: 0.5 },
                                         scale: { duration: 0.5 }
                                     }}
-                                    className={`group relative flex h-48 w-48 flex-col justify-center overflow-hidden rounded-2xl border ${value.color} p-6 text-center shadow-lg transition-all hover:scale-105 hover:shadow-xl sm:h-56 sm:w-56`}
+                                    className={`group relative flex h-48 w-48 flex-col justify-center overflow-hidden rounded-3xl border-2 backdrop-blur-sm ${value.color} p-6 text-center shadow-2xl transition-all hover:scale-110 hover:shadow-2xl sm:h-56 sm:w-56`}
                                 >
-                                    <div className="mx-auto mb-3 inline-flex rounded-xl bg-background p-3 shadow-sm">
+                                    <div className="mx-auto mb-4 inline-flex rounded-2xl bg-white p-3 shadow-md transition-transform group-hover:scale-110 group-hover:rotate-6">
                                         {value.icon}
                                     </div>
-                                    <h3 className="mb-2 font-serif text-lg font-bold text-foreground">
+                                    <h3 className="mb-2 font-serif text-xl font-bold text-foreground">
                                         {value.title}
                                     </h3>
-                                    <p className="text-xs text-muted-foreground">
+                                    <p className="text-sm leading-relaxed text-muted-foreground/80">
                                         {value.description}
                                     </p>
                                 </motion.div>

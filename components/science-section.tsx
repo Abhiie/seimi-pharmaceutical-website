@@ -129,9 +129,11 @@ export function ScienceSection() {
                     src="/images/l-20carnosine-20syrup.png"
                     alt="L-Carnosine Syrup"
                     fill
-                    className="object-contain drop-shadow-2xl"
+                    className="object-contain drop-shadow-2xl transition-all duration-500 opacity-0"
+                    onLoadingComplete={(img) => img.classList.remove("opacity-0")}
                     sizes="200px"
                   />
+                  <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-primary/5 blur-3xl" />
                 </motion.div>
               </div>
 
@@ -172,6 +174,7 @@ export function ScienceSection() {
                     width={32}
                     height={20}
                     className="rounded object-cover"
+                    style={{ height: 'auto' }}
                   />
                   <div>
                     <p className="text-xs font-semibold text-foreground">

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { CursorFollower } from "@/components/cursor-follower"
+import { SWRegistration } from "@/components/sw-registration"
 import './globals.css'
 
 const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -95,7 +96,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         {/* Structured Data - Organization */}
         <script
@@ -139,6 +140,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans antialiased`}>
+        <SWRegistration />
         <CursorFollower />
         {children}
         <Analytics />

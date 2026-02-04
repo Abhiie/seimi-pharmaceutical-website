@@ -167,7 +167,7 @@ function ProductCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.05 }}
-      className="group"
+      className="group relative"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         const centerX = rect.left + rect.width / 2
@@ -204,9 +204,12 @@ function ProductCard({
               src={product.image || "/placeholder.svg"}
               alt={product.name}
               fill
-              className="object-contain drop-shadow-2xl transition-transform duration-500"
+              className="object-contain drop-shadow-2xl transition-all duration-500 opacity-0"
+              onLoadingComplete={(img) => img.classList.remove("opacity-0")}
               sizes="(max-width: 768px) 120px, 160px"
             />
+            {/* Loading Placeholder */}
+            <div className="absolute inset-0 -z-10 animate-pulse rounded-2xl bg-primary/5 blur-xl" />
           </motion.div>
 
           <div className="flex-1 text-center md:text-left">
@@ -383,6 +386,7 @@ function ProductModal({
                 width={40}
                 height={24}
                 className="rounded object-cover"
+                style={{ height: 'auto' }}
               />
               <div>
                 <p className="text-xs font-medium uppercase tracking-wider text-primary">
