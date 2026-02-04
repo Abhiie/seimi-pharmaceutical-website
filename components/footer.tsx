@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import {
   Mail,
   Phone,
@@ -48,14 +49,14 @@ export function Footer() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-4"
           >
-            <Link href="/" className="mb-6 inline-block">
-              <div className="flex flex-col">
-                <span className="font-serif text-3xl font-bold tracking-tight text-primary">
-                  seimei
-                </span>
-                <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  Innovation
-                </span>
+            <Link href="/" className="mb-6 inline-block -ml-1">
+              <div className="relative h-12 w-32 md:h-14 md:w-40">
+                <Image
+                  src="/images/logo.png"
+                  alt="Seimi Innovation Logo"
+                  fill
+                  className="object-contain object-left"
+                />
               </div>
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -155,7 +156,7 @@ export function Footer() {
           </motion.div>
         </div>
 
-        {/* Warnings section */}
+        {/* Warnings section
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +201,7 @@ export function Footer() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Bottom bar */}

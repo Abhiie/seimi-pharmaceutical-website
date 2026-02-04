@@ -9,7 +9,6 @@ import { BlogSection } from "@/components/blog-section"
 import { Footer } from "@/components/footer"
 import { ScienceSection } from "@/components/science-section"
 import { RndSection } from "@/components/rnd-section"
-import { ProductShowcase } from "@/components/product-showcase"
 import { StickyGallery } from "@/components/sticky-gallery"
 export default function Home() {
   return (
@@ -18,13 +17,13 @@ export default function Home() {
       <Hero />
       <AboutSection />
       <RndSection />
-      <ProductShowcase />
+      {/* <ProductShowcase /> */}
       <ScienceSection />
       <StickyGallery />
 
-      <CoreValues />
+      {/* <CoreValues /> */}
       <StatsSection />
-      <BlogSection />
+      {/* <BlogSection /> */}
       <Footer />
     </main>
   )

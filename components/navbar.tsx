@@ -60,7 +60,9 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? "glass top-0 py-3 shadow-sm" : "bg-transparent top-8 py-6"
+        className={`fixed left-0 right-0 z-40 transition-all duration-500 ${isScrolled
+            ? "bg-background/95 backdrop-blur-md top-0 py-3 shadow-sm"
+            : "bg-transparent md:top-8 top-0 py-6"
           }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8" aria-label="Main navigation">
@@ -125,10 +127,15 @@ export function Navbar() {
             aria-label="Mobile menu"
           >
             <div className="flex justify-between items-center p-6 border-b">
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold tracking-tight text-primary">
-                  seimei
-                </span>
+              <div className="flex items-center gap-2">
+                <div className="relative h-10 w-28">
+                  <Image
+                    src="/images/logo.png"
+                    alt="Seimi Innovation Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
