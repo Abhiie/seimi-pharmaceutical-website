@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import Image from "next/image"
@@ -93,8 +94,8 @@ export function RndSection() {
 
                 {/* Steps Narrative */}
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
-                    {/* Left Side: Sticky Image */}
-                    <div className="lg:sticky lg:top-[15%] lg:h-[70vh] flex items-center order-2 lg:order-1">
+                    {/* Left Side: Sticky Image - Hidden on mobile, only visible on large screens */}
+                    <div className="hidden lg:sticky lg:top-[15%] lg:h-[70vh] lg:flex items-center lg:order-1">
                         <div className="relative aspect-square w-full h-[400px] lg:h-full overflow-hidden rounded-3xl shadow-2xl border border-border/50 bg-card">
                             <AnimatePresence mode="wait">
                                 <motion.div
@@ -171,14 +172,34 @@ export function RndSection() {
                                 </p>
 
                                 {/* Mobile Image */}
-                                <div className="mt-8 lg:hidden overflow-hidden rounded-2xl shadow-lg border border-border">
-                                    <Image
-                                        src={step.image}
-                                        alt={step.title}
-                                        width={600}
-                                        height={400}
-                                        className="w-full object-cover"
-                                    />
+                                <div className="mt-8 lg:hidden">
+                                    <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-lg border border-border bg-card">
+                                        <Image
+                                            src={step.image}
+                                            alt={step.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+                                        {/* Mobile Phase Indicator Overlay */}
+                                        <div className="absolute bottom-4 left-4 z-10 flex items-center gap-3">
+                                            <div className={`flex h-8 w-8 items-center justify-center rounded-lg shadow-lg ${step.color}`}>
+                                                <div className="scale-75">
+                                                    {step.icon}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="text-[8px] font-bold uppercase tracking-widest text-white/70">Phase 0{index + 1}</p>
+                                                <div className="h-1 w-10 rounded-full bg-white/20">
+                                                    <div
+                                                        className="h-full bg-white transition-all duration-500"
+                                                        style={{ width: `${((index + 1) / steps.length) * 100}%` }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}

@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { motion } from "framer-motion"
 import { ShieldCheck, FlaskRound, HeartHandshake, Users, Leaf, Microscope } from "lucide-react"
 
@@ -70,12 +71,14 @@ export function AboutSection() {
                         </motion.div>
                     </motion.div>
 
-                    {/* Rotating Grid Container */}
-                    <div className="relative mx-auto flex h-[500px] w-full max-w-[500px] items-center justify-center lg:h-[600px] lg:w-[600px]">
+                    {/* Responsive Grid Container */}
+                    <div className="relative mx-auto flex h-[400px] w-full max-w-[400px] items-center justify-center sm:h-[500px] sm:max-w-[500px] lg:h-[600px] lg:max-w-[600px]">
                         <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ ease: "linear", duration: 20, repeat: Infinity }}
-                            className="grid grid-cols-2 gap-6"
+                            animate={{ rotate: [0, 360] }}
+                            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+                            className="grid grid-cols-2 gap-3 sm:gap-6"
+                            // Disable animation on very small screens to prevent layout breaks
+                            style={{ animationPlayState: 'paused', '@media (min-width: 640px)': { animationPlayState: 'running' } } as any}
                         >
                             {values.map((value, index) => (
                                 <motion.div
@@ -83,21 +86,23 @@ export function AboutSection() {
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
-                                    animate={{ rotate: -360 }}
+                                    animate={{ rotate: [0, -360] }}
                                     transition={{
-                                        rotate: { ease: "linear", duration: 20, repeat: Infinity },
+                                        rotate: { ease: "linear", duration: 25, repeat: Infinity },
                                         opacity: { duration: 0.5 },
                                         scale: { duration: 0.5 }
                                     }}
-                                    className={`group relative flex h-48 w-48 flex-col justify-center overflow-hidden rounded-3xl border-2 backdrop-blur-sm ${value.color} p-6 text-center shadow-2xl transition-all hover:scale-110 hover:shadow-2xl sm:h-56 sm:w-56`}
+                                    className={`group relative flex h-36 w-36 flex-col justify-center overflow-hidden rounded-2xl border-2 backdrop-blur-sm ${value.color} p-4 text-center shadow-xl transition-all hover:scale-105 sm:h-52 sm:w-52 sm:rounded-3xl sm:p-6 lg:h-56 lg:w-56`}
                                 >
-                                    <div className="mx-auto mb-4 inline-flex rounded-2xl bg-white p-3 shadow-md transition-transform group-hover:scale-110 group-hover:rotate-6">
-                                        {value.icon}
+                                    <div className="mx-auto mb-2 inline-flex rounded-xl bg-white p-2 shadow-md transition-transform group-hover:scale-110 group-hover:rotate-6 sm:mb-4 sm:rounded-2xl sm:p-3">
+                                        <div className="h-6 w-6 sm:h-8 sm:w-8">
+                                            {value.icon}
+                                        </div>
                                     </div>
-                                    <h3 className="mb-2 font-serif text-xl font-bold text-foreground">
+                                    <h3 className="mb-1 font-serif text-sm font-bold text-foreground sm:mb-2 sm:text-xl">
                                         {value.title}
                                     </h3>
-                                    <p className="text-sm leading-relaxed text-muted-foreground/80">
+                                    <p className="line-clamp-2 px-1 text-[10px] leading-tight text-muted-foreground/80 sm:line-clamp-none sm:text-sm sm:leading-relaxed">
                                         {value.description}
                                     </p>
                                 </motion.div>
