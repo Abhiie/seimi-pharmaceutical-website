@@ -1,105 +1,196 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
+import Image from "next/image"
 import { FlaskConical, ClipboardCheck, Factory, Truck, CheckCircle2 } from "lucide-react"
 
+const steps = [
+    {
+        icon: <FlaskConical className="h-6 w-6 text-white" />,
+        title: "Clinical Research",
+        subtitle: "Discovery & Validation",
+        description: "Our process begins with identifying potent, science-backed ingredients. We collaborate with international research labs to validate the efficacy of every bioactive compound before it enters our formulation cycle.",
+        image: "/images/rnd-clinical-research.png",
+        color: "bg-orange-500",
+        lightColor: "bg-orange-50/10",
+        accent: "text-orange-600",
+    },
+    {
+        icon: <ClipboardCheck className="h-6 w-6 text-white" />,
+        title: "Precision Formulation",
+        subtitle: "Bioavailability Excellence",
+        description: "We don't just mix ingredients; we optimize them. Our labs focus on molecular stability and bioavailability, ensuring that every dose is absorbed efficiently by the body for maximum therapeutic impact.",
+        image: "/images/rnd-formulation.png",
+        color: "bg-purple-500",
+        lightColor: "bg-purple-50/10",
+        accent: "text-purple-600",
+    },
+    {
+        icon: <CheckCircle2 className="h-6 w-6 text-white" />,
+        title: "Quality Analytics",
+        subtitle: "Uncompromising Standards",
+        description: "Every batch undergoes rigorous multi-stage testing. From raw material purity to finished product stability, our quality control exceeds international pharmaceutical benchmarks.",
+        image: "/images/rnd-quality-testing.png",
+        color: "bg-pink-500",
+        lightColor: "bg-pink-50/10",
+        accent: "text-pink-600",
+    },
+    {
+        icon: <Factory className="h-6 w-6 text-white" />,
+        title: "Smart Manufacturing",
+        subtitle: "GMP Certified Excellence",
+        description: "Utilizing state-of-the-art automated lines in sterile, controlled environments. Our manufacturing process minimizes human error and guarantees consistency across every single unit produced.",
+        image: "/images/rnd-manufacturing.png",
+        color: "bg-orange-500",
+        lightColor: "bg-orange-50/10",
+        accent: "text-orange-600",
+    },
+    {
+        icon: <Truck className="h-6 w-6 text-white" />,
+        title: "Strategic Distribution",
+        subtitle: "Integrity Maintained",
+        description: "From our climate-controlled warehouse to your doorstep, we maintain the cold chain and structural integrity of our supplements, delivering premium health without compromise.",
+        image: "/images/rnd-distribution.png",
+        color: "bg-green-500",
+        lightColor: "bg-green-50/10",
+        accent: "text-green-600",
+    },
+]
+
 export function RndSection() {
-    const steps = [
-        {
-            icon: <FlaskConical className="h-6 w-6 text-white" />,
-            title: "Clinical Research",
-            description: "Identifying potent ingredients backed by scientific trials.",
-            color: "bg-blue-500",
-        },
-        {
-            icon: <ClipboardCheck className="h-6 w-6 text-white" />,
-            title: "Formulation",
-            description: "Optimizing bioavailability and efficacy in our labs.",
-            color: "bg-purple-500",
-        },
-        {
-            icon: <CheckCircle2 className="h-6 w-6 text-white" />,
-            title: "Quality Testing",
-            description: "Rigorous testing for purity, potency, and safety.",
-            color: "bg-pink-500",
-        },
-        {
-            icon: <Factory className="h-6 w-6 text-white" />,
-            title: "Manufacturing",
-            description: "Produced in GMP-certified state-of-the-art facilities.",
-            color: "bg-orange-500",
-        },
-        {
-            icon: <Truck className="h-6 w-6 text-white" />,
-            title: "Distribution",
-            description: "Delivering premium health directly to consumers.",
-            color: "bg-green-500",
-        },
-    ]
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [activeIndex, setActiveIndex] = useState(0)
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"],
+    })
 
     return (
-        <section id="rnd" className="bg-secondary/20 py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16 text-center"
-                >
-                    <span className="mb-4 inline-block text-xs font-medium uppercase tracking-[0.2em] text-primary">
-                        R&D Process
-                    </span>
-                    <h2 className="mb-6 font-serif text-4xl font-bold text-foreground md:text-5xl">
-                        From Lab to Life
-                    </h2>
-                    <p className="mx-auto max-w-2xl text-muted-foreground">
-                        Our commitment to innovation is mapped out in a meticulous process that ensures every product meets the highest pharmaceutical standards.
-                    </p>
-                </motion.div>
+        <section id="rnd" ref={containerRef} className="relative">
 
-                {/* Development Timeline Animation */}
-                <div className="relative mx-auto max-w-5xl">
-                    {/* Connector Line (Desktop) */}
-                    <div className="absolute left-[50%] top-12 hidden h-1 w-full -translate-x-1/2 bg-border lg:block" />
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+                {/* Header Section - Appears first */}
+                <div className="flex flex-col justify-center items-center text-center pt-20 pb-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+                            The Science of Life
+                        </span>
+                        <h2 className="mb-6 font-serif text-5xl font-bold text-foreground md:text-7xl">
+                            From Lab to <span className="text-primary italic">Life</span>
+                        </h2>
+                        <p className="mx-auto max-w-2xl text-lg text-muted-foreground leading-relaxed">
+                            Our commitment to innovation is mapped out in a meticulous process that ensures every product meets the highest pharmaceutical standards.
+                        </p>
+                    </motion.div>
+                </div>
 
-                    {/* Steps Grid */}
-                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-4">
+                {/* Steps Narrative */}
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
+                    {/* Left Side: Sticky Image */}
+                    <div className="lg:sticky lg:top-[15%] lg:h-[70vh] flex items-center order-2 lg:order-1">
+                        <div className="relative aspect-square w-full h-[400px] lg:h-full overflow-hidden rounded-3xl shadow-2xl border border-border/50 bg-card">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeIndex}
+                                    initial={{ opacity: 0, scale: 1.05, filter: "blur(4px)" }}
+                                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                    exit={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+                                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    className="absolute inset-0"
+                                >
+                                    <Image
+                                        src={steps[activeIndex].image}
+                                        alt={steps[activeIndex].title}
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                </motion.div>
+                            </AnimatePresence>
+
+                            {/* Technical Overlay */}
+                            <div className="absolute bottom-8 left-8 right-8 z-10 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <motion.div
+                                        animate={{ scale: [1, 1.05, 1] }}
+                                        transition={{ duration: 2, repeat: Infinity }}
+                                        className={`flex h-12 w-12 items-center justify-center rounded-xl shadow-lg ${steps[activeIndex].color}`}
+                                    >
+                                        {steps[activeIndex].icon}
+                                    </motion.div>
+                                    <div>
+                                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/70">Scientific Phase</p>
+                                        <div className="flex items-center gap-2">
+                                            <p className="font-serif text-xl font-bold text-white">0{activeIndex + 1}</p>
+                                            <div className="h-1 w-12 rounded-full bg-white/20">
+                                                <motion.div
+                                                    className="h-full bg-white"
+                                                    initial={{ width: 0 }}
+                                                    animate={{ width: `${((activeIndex + 1) / steps.length) * 100}%` }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Side: Scrollable Content */}
+                    <div className="flex flex-col gap-[40vh] lg:gap-[60vh] order-1 lg:order-2 pt-[20vh] pb-0">
                         {steps.map((step, index) => (
                             <motion.div
                                 key={step.title}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0.1, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: index * 0.15 }}
-                                className="group relative flex flex-col items-center text-center"
+                                onViewportEnter={() => setActiveIndex(index)}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ amount: 0.6 }}
+                                className="flex flex-col justify-center min-h-[40vh]"
                             >
-                                {/* Step Circle */}
-                                <motion.div
-                                    whileHover={{ scale: 1.1, rotate: 360 }}
-                                    transition={{ type: "spring", stiffness: 200 }}
-                                    className={`relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-full shadow-lg ${step.color} ring-4 ring-background`}
-                                >
-                                    {step.icon}
-                                </motion.div>
-
-                                {/* Content */}
-                                <h3 className="mb-2 text-lg font-bold text-foreground">
+                                <div className={`mb-4 inline-flex items-center gap-2 font-bold uppercase tracking-widest text-xs ${step.accent}`}>
+                                    <span className="h-[2px] w-8 bg-current" />
+                                    Phase {index + 1}
+                                </div>
+                                <h3 className="mb-4 font-serif text-3xl font-bold text-foreground md:text-5xl lg:text-6xl tracking-tight">
                                     {step.title}
                                 </h3>
-                                <p className="text-sm text-muted-foreground">
+                                <p className="mb-6 text-xl font-medium text-primary/80 italic">
+                                    {step.subtitle}
+                                </p>
+                                <p className="text-lg leading-relaxed text-muted-foreground/80 font-medium">
                                     {step.description}
                                 </p>
 
-                                {/* Animated Line (Mobile) - Connecting downwards */}
-                                {index !== steps.length - 1 && (
-                                    <div className="absolute left-1/2 top-16 -ml-px h-12 w-0.5 bg-border lg:hidden" />
-                                )}
+                                {/* Mobile Image */}
+                                <div className="mt-8 lg:hidden overflow-hidden rounded-2xl shadow-lg border border-border">
+                                    <Image
+                                        src={step.image}
+                                        alt={step.title}
+                                        width={600}
+                                        height={400}
+                                        className="w-full object-cover"
+                                    />
+                                </div>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </div>
+
+            {/* Scroll Progress Bar */}
+            <motion.div
+                style={{ scaleX: scrollYProgress }}
+                className="fixed bottom-0 left-0 right-0 z-50 h-1.5 origin-left bg-gradient-to-r from-primary to-orange-400"
+            />
         </section>
     )
 }

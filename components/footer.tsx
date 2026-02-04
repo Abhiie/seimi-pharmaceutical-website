@@ -37,7 +37,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer id="contact" className="relative border-t border-border bg-background">
+    <footer id="contact" className="relative border-t border-border">
       {/* Top section */}
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">

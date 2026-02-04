@@ -43,7 +43,7 @@ export function StickyGallery() {
   })
 
   return (
-    <section ref={containerRef} className="relative bg-background">
+    <section ref={containerRef} className="relative">
       <div className="flex min-h-[400vh]">
         {/* Sticky left panel */}
         <div className="hidden w-1/2 lg:block">

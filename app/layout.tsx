@@ -4,6 +4,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { CursorFollower } from "@/components/cursor-follower"
 import { SWRegistration } from "@/components/sw-registration"
+import { GlobalGlow } from "@/components/global-glow"
 import './globals.css'
 
 const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -140,6 +141,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans antialiased`}>
+        <GlobalGlow />
         <SWRegistration />
         <CursorFollower />
         {children}

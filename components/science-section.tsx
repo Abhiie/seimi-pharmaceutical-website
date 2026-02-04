@@ -45,12 +45,8 @@ export function ScienceSection() {
     <section
       ref={containerRef}
       id="science"
-      className="relative overflow-hidden bg-background py-24 md:py-32"
+      className="relative pt-12 pb-24 md:pt-16 md:pb-32"
     >
-      {/* Background pattern */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--primary)_1px,_transparent_1px)] bg-[size:40px_40px] opacity-[0.03]" />
-      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">

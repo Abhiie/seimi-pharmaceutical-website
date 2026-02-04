@@ -32,8 +32,9 @@ export function AboutSection() {
     ]
 
     return (
-        <section id="about" className="relative overflow-hidden bg-background py-24 md:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section id="about" className="relative overflow-hidden pt-24 pb-12 md:pt-32 md:pb-16">
+
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
