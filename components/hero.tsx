@@ -16,47 +16,62 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9])
 
-  const products = [
+  // Extended products array with details for the 3D carousel
+  const carouselProducts = [
     {
       src: "/images/alfa-keta.png",
-      alt: "Alfa Keta Analogue",
-      rotate: -15,
+      name: "Alfa Keta Analogue",
+      tagline: "Kidney Health",
+      description: "Essential amino acids for kidney support.",
+      color: "#3B82F6",
     },
     {
       src: "/images/digestive-enzyme.png",
-      alt: "Digestive Enzyme",
-      rotate: -5,
+      name: "Digestive Enzyme",
+      tagline: "Healthy Digestion",
+      description: "Comprehensive enzyme blend for digestion.",
+      color: "#F97316",
     },
     {
       src: "/images/grape-seed.png",
-      alt: "Grape Seed",
-      rotate: 5,
+      name: "Grape Seed",
+      tagline: "Heart & Immune",
+      description: "Potent antioxidant formula.",
+      color: "#A855F7",
     },
-    {
+     {
       src: "/images/5-htp.png",
-      alt: "5-HTP",
-      rotate: 15,
+      name: "5-HTP",
+      tagline: "Mental Wellness",
+      description: "Support for mood and sleep regulation.",
+      color: "#6366f1",
     },
     {
       src: "/images/l-20carnosine-20syrup-20-20box.png",
-      alt: "L-Carnosine with DHA",
-      rotate: 25,
+      name: "L-Carnosine",
+      tagline: "Brain Health",
+      description: "Advanced formula for nerve function.",
+      color: "#EC4899",
     },
     {
       src: "/images/omega-203-20syrup-20-20box.png",
-      alt: "Omega 3 Fish Oil",
-      rotate: -25,
+      name: "Omega 3 Fish Oil",
+      tagline: "Heart Health",
+      description: "Premium fish oil for cardiovascular wellness.",
+      color: "#F59E0B",
     },
   ]
-
-  // Create an infinite duplicate list for the marquee
-  const marqueeProducts = [...products, ...products, ...products]
 
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background pt-32"
     >
+      {/* Background gradient */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-primary/10 blur-[100px]" />
+      </div>
 
       <motion.div style={{ y, opacity, scale }} className="relative z-10 w-full px-6">
         <div className="mx-auto max-w-7xl text-center">
@@ -93,52 +108,74 @@ export function Hero() {
             quality ingredients.
           </motion.p>
 
-          {/* Infinite Marquee Product showcase */}
-          <div className="relative mx-auto w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
+          {/* 3D Auto-Rotating Carousel */}
+          <div className="relative mx-auto flex h-[500px] w-full items-center justify-center perspective-[2000px]">
             <motion.div
-              className="flex gap-12 md:gap-20"
-              animate={{ x: [0, -100 * products.length * 2] }} // Adjust based on estimated width logic or percentage
+              animate={{ rotateY: [0, -360] }}
               transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 25,
-                  ease: "linear",
-                },
+                repeat: Infinity,
+                duration: 40,
+                ease: "linear",
               }}
-              style={{ width: "fit-content" }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative flex h-[350px] w-[250px] items-center justify-center"
             >
-              {marqueeProducts.map((product, index) => (
-                <motion.div
-                  key={`${product.alt}-${index}`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 + index * 0.05 }}
-                  whileHover={{
-                    scale: 1.15,
-                    rotateY: 10,
-                    filter: "brightness(1.1)",
-                    zIndex: 10,
-                    transition: { duration: 0.3 }
-                  }}
-                  className="relative flex-shrink-0 cursor-pointer perspective-1000"
-                >
-                  <div className="relative h-[280px] w-[160px] md:h-[350px] md:w-[220px]">
-                    <Image
-                      src={product.src || "/placeholder.svg"}
-                      alt={product.alt}
-                      fill
-                      className="object-contain drop-shadow-2xl transition-all duration-500 opacity-0"
-                      onLoadingComplete={(img) => img.classList.remove("opacity-0")}
-                      sizes="(max-width: 768px) 160px, 220px"
-                      priority={index < 4}
-                      loading={index < 4 ? "eager" : "lazy"}
-                    />
-                    {/* Reflection effect */}
-                    <div className="absolute -bottom-8 left-0 right-0 h-8 bg-gradient-to-b from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100 blur-sm transform scale-y-[-1]" />
+              {[...carouselProducts, ...carouselProducts].map((product, index) => {
+                const count = carouselProducts.length * 2
+                const radius = 600
+                const angle = (index / count) * 360
+
+                return (
+                  <div
+                    key={`${product.name}-${index}`}
+                    className="absolute flex h-[350px] w-[250px] origin-center items-center justify-center p-2"
+                    style={{
+                      transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    <div
+                      className="group relative h-full w-full overflow-hidden rounded-3xl border p-5 shadow-xl transition-all duration-500"
+                      style={{
+                        borderColor: `${product.color}40`,
+                        background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.90) 100%)`,
+                        boxShadow: `0 8px 32px -8px ${product.color}20`,
+                      }}
+                    >
+                      {/* Colored glow spot */}
+                      <div
+                        className="absolute -top-20 -right-20 h-32 w-32 rounded-full blur-[50px] opacity-40 transition-opacity group-hover:opacity-60"
+                        style={{ background: product.color }}
+                      />
+
+                      <div className="relative z-10 flex h-full flex-col">
+                        <div className="relative flex-1">
+                          <Image
+                            src={product.src || "/placeholder.svg"}
+                            alt={product.name}
+                            fill
+                            className="object-contain drop-shadow-2xl"
+                            sizes="250px"
+                            priority={index < 4}
+                          />
+                        </div>
+
+                        <div className="mt-4 text-center">
+                          <h3 className="mb-1 font-serif text-lg font-bold text-foreground">
+                            {product.name}
+                          </h3>
+                          <p
+                            className="text-[10px] font-medium uppercase tracking-wider"
+                            style={{ color: product.color }}
+                          >
+                            {product.tagline}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
-              ))}
+                )
+              })}
             </motion.div>
           </div>
         </div>

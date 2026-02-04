@@ -7,17 +7,19 @@ import Image from "next/image"
 const galleryProducts = [
   {
     name: "L-Carnosine with DHA",
-    tagline: "Brain Health & Cognitive Support",
+    tagline: "Brain Health & Support",
     description:
       "Advanced brain-supporting formula with DHA for enhanced nerve function.",
     image: "/images/l-20carnosine-20syrup-20-20box-202_.png",
+    color: "#3B82F6", // Blue
   },
   {
     name: "Omega 3 Fish Oil",
-    tagline: "Heart, Brain & Liver Health",
+    tagline: "Heart & Cognitive Wellness",
     description:
       "Premium fish oil syrup for cardiovascular and cognitive wellness.",
     image: "/images/omega-203-20syrup-20-20box.png",
+    color: "#F59E0B", // Amber/Gold
   },
   {
     name: "Silymarin Liver Tonic",
@@ -25,13 +27,31 @@ const galleryProducts = [
     description:
       "Powerful liver tonic with natural ingredients for optimal detoxification.",
     image: "/images/silimarin-20syrup-20-20box.png",
+    color: "#22C55E", // Green
   },
   {
     name: "Cranberry Syrup",
-    tagline: "UTI Prevention & Kidney Health",
+    tagline: "UTI & Kidney Health",
     description:
       "Natural cranberry extract for urinary tract and kidney support.",
     image: "/images/sei-20cranberry-20syrup-20box.png",
+    color: "#EC4899", // Pink
+  },
+  {
+    name: "Digestive Enzyme",
+    tagline: "Healthy Digestion",
+    description:
+      "Comprehensive enzyme blend to support healthy digestion.",
+    image: "/images/digestive-enzyme.png",
+    color: "#F97316", // Orange
+  },
+  {
+    name: "Grape Seed",
+    tagline: "Heart & Immune",
+    description:
+      "Potent antioxidant formula with Resveratrol.",
+    image: "/images/grape-seed.png",
+    color: "#A855F7", // Purple
   },
 ]
 
@@ -42,158 +62,119 @@ export function StickyGallery() {
     offset: ["start start", "end end"],
   })
 
+  // Rotate the carousel based on scroll
+  // We want to rotate a full 360 degrees (or more) over the scroll distance
+  const rotateY = useTransform(scrollYProgress, [0, 1], [0, -360])
+
   return (
-    <section ref={containerRef} className="relative">
-      <div className="flex min-h-[400vh]">
-        {/* Sticky left panel */}
-        <div className="hidden w-1/2 lg:block">
-          <div className="sticky top-0 flex h-screen items-center justify-center px-12">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="max-w-md"
-            >
-              <span className="mb-4 inline-block text-xs font-medium uppercase tracking-[0.2em] text-primary">
-                Product Range
-              </span>
-              <h2 className="mb-6 font-serif text-5xl font-bold leading-tight text-foreground">
-                Complete Wellness{" "}
-                <span className="text-primary">Solutions</span>
-              </h2>
-              <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
-                From brain health to liver support, our comprehensive range of
-                pharmaceutical-grade supplements is designed to address your
-                specific health needs.
-              </p>
+    <section ref={containerRef} className="relative h-[300vh]">
+      <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
+        
+        {/* Header Content */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="absolute top-12 z-10 mx-auto max-w-2xl px-6 text-center"
+        >
+          <span className="mb-2 inline-block text-xs font-medium uppercase tracking-[0.2em] text-primary">
+            360° Product View
+          </span>
+          <h2 className="mb-4 font-serif text-4xl font-bold text-foreground">
+            Complete Wellness <span className="text-primary">Solutions</span>
+          </h2>
+          <p className="text-muted-foreground">
+            Scroll to rotate the carousel and explore our range.
+          </p>
+        </motion.div>
 
-              {/* Progress indicator */}
-              <div className="flex gap-2">
-                {galleryProducts.map((_, index) => {
-                  const segmentStart = index / galleryProducts.length
-                  const segmentEnd = (index + 1) / galleryProducts.length
+        {/* 3D Scene Viewport */}
+        <div className="flex h-[600px] w-full items-center justify-center perspective-[2000px]">
+          {/* Carousel Container */}
+          <motion.div
+            style={{ 
+              rotateY,
+              transformStyle: "preserve-3d",
+            }}
+            className="relative flex h-[400px] w-[300px] items-center justify-center"
+          >
+            {/* Duplicate products to create a denser circle (12 items) */}
+            {[...galleryProducts, ...galleryProducts].map((product, index) => {
+              const count = galleryProducts.length * 2
+              const radius = 650 // Increased radius for more items
+              const angle = (index / count) * 360
 
-                  return (
-                    <ProgressBar
-                      key={index}
-                      scrollProgress={scrollYProgress}
-                      segmentStart={segmentStart}
-                      segmentEnd={segmentEnd}
-                    />
-                  )
-                })}
-              </div>
-            </motion.div>
-          </div>
+              return (
+                <div
+                  key={`${product.name}-${index}`}
+                  className="absolute flex h-[400px] w-[280px] origin-center items-center justify-center p-2"
+                  style={{
+                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                    backfaceVisibility: "hidden", 
+                  }}
+                >
+                  <CardContent product={product} />
+                </div>
+              )
+            })}
+          </motion.div>
         </div>
-
-        {/* Scrolling right panel */}
-        <div className="w-full lg:w-1/2">
-          {galleryProducts.map((product, index) => (
-            <GalleryItem
-              key={product.name}
-              product={product}
-              index={index}
-              total={galleryProducts.length}
-              scrollProgress={scrollYProgress}
-            />
-          ))}
-        </div>
+        
+        {/* Scroll Indicator */}
+         <div className="absolute bottom-12 flex flex-col items-center gap-2 opacity-50">
+            <div className="h-12 w-[1px] bg-foreground/20"></div>
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Scroll to Rotate</span>
+         </div>
       </div>
     </section>
   )
 }
 
-function ProgressBar({
-  scrollProgress,
-  segmentStart,
-  segmentEnd,
-}: {
-  scrollProgress: ReturnType<typeof useScroll>["scrollYProgress"]
-  segmentStart: number
-  segmentEnd: number
-}) {
-  const width = useTransform(scrollProgress, [segmentStart, segmentEnd], ["0%", "100%"])
-
+function CardContent({ product }: { product: typeof galleryProducts[0] }) {
   return (
-    <div className="h-1 flex-1 overflow-hidden rounded-full bg-secondary">
-      <motion.div style={{ width }} className="h-full bg-primary" />
-    </div>
-  )
-}
-
-function GalleryItem({
-  product,
-  index,
-  total,
-  scrollProgress,
-}: {
-  product: (typeof galleryProducts)[0]
-  index: number
-  total: number
-  scrollProgress: ReturnType<typeof useScroll>["scrollYProgress"]
-}) {
-  const segmentStart = index / total
-  const segmentEnd = (index + 1) / total
-  const midPoint = (segmentStart + segmentEnd) / 2
-
-  const opacity = useTransform(
-    scrollProgress,
-    [
-      segmentStart,
-      segmentStart + 0.05,
-      midPoint,
-      segmentEnd - 0.05,
-      segmentEnd,
-    ],
-    [0, 1, 1, 1, index === total - 1 ? 1 : 0]
-  )
-
-  const y = useTransform(
-    scrollProgress,
-    [segmentStart, segmentStart + 0.1, segmentEnd - 0.1, segmentEnd],
-    [100, 0, 0, index === total - 1 ? 0 : -100]
-  )
-
-  return (
-    <motion.div
-      style={{ opacity, y }}
-      className="flex h-screen items-center justify-center px-6 lg:px-12"
+    <div 
+      className="group relative h-full w-full overflow-hidden rounded-3xl border p-6 shadow-xl transition-all duration-500"
+      style={{
+        borderColor: `${product.color}40`, 
+        background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.90) 100%)`, // High opacity white background
+        boxShadow: `0 8px 32px -8px ${product.color}20` 
+      }}
     >
-      <div className="glass-card w-full max-w-lg overflow-hidden rounded-3xl p-8 lg:p-10">
-        {/* Mobile header */}
-        <div className="mb-6 lg:hidden">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-          </span>
-        </div>
+      {/* Glossy sheen */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-20" />
+      
+      {/* Colored glow spot */}
+      <div 
+        className="absolute -top-20 -right-20 h-40 w-40 rounded-full blur-[60px] opacity-40 transition-opacity group-hover:opacity-60"
+        style={{ background: product.color }}
+      />
+      
+      <div className="relative z-10 flex h-full flex-col">
+          <div className="relative flex-1">
+            <Image
+              src={product.image || "/placeholder.svg"}
+              alt={product.name}
+              fill
+              className="object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
+              sizes="280px"
+              priority
+            />
+          </div>
 
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="relative mx-auto mb-8 h-[280px] w-[140px] md:h-[320px] md:w-[160px]"
-        >
-          <Image
-            src={product.image || "/placeholder.svg"}
-            alt={product.name}
-            fill
-            className="object-contain drop-shadow-2xl"
-            sizes="160px"
-          />
-        </motion.div>
-
-        <div className="text-center">
-          <h3 className="mb-2 font-serif text-2xl font-bold text-foreground md:text-3xl">
-            {product.name}
-          </h3>
-          <p className="mb-4 text-sm font-medium text-primary">
-            {product.tagline}
-          </p>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            {product.description}
-          </p>
+        <div className="mt-4 text-center">
+            <h3 className="mb-1 font-serif text-xl font-bold text-foreground">
+              {product.name}
+            </h3>
+            <p 
+              className="mb-2 text-xs font-medium uppercase tracking-wider"
+              style={{ color: product.color }}
+            >
+              {product.tagline}
+            </p>
+            <p className="line-clamp-2 text-xs text-muted-foreground">
+              {product.description}
+            </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
