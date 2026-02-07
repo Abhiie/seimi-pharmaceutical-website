@@ -10,25 +10,25 @@ export function AboutSection() {
             icon: <ShieldCheck className="h-8 w-8" />,
             title: "Quality Assurance",
             description: "Rigorous standards at every step of manufacturing.",
-            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
+            color: "border-cyan-500/20 bg-cyan-500/5 text-cyan-600 shadow-cyan-500/10 hover:border-cyan-500/40 hover:shadow-cyan-500/20",
         },
         {
             icon: <Microscope className="h-8 w-8" />,
             title: "Research Driven",
             description: "Evidence-based formulations supported by clinical data.",
-            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
+            color: "border-fuchsia-500/20 bg-fuchsia-500/5 text-fuchsia-600 shadow-fuchsia-500/10 hover:border-fuchsia-500/40 hover:shadow-fuchsia-500/20",
         },
         {
             icon: <HeartHandshake className="h-8 w-8" />,
             title: "Customer Wellness",
             description: "Dedicated to improving lives through better health.",
-            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
+            color: "border-orange-500/20 bg-orange-500/5 text-orange-600 shadow-orange-500/10 hover:border-orange-500/40 hover:shadow-orange-500/20",
         },
         {
             icon: <Leaf className="h-8 w-8" />,
             title: "Ethical Standards",
             description: "Transparency and integrity in all our operations.",
-            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
+            color: "border-lime-500/20 bg-lime-500/5 text-lime-600 shadow-lime-500/10 hover:border-lime-500/40 hover:shadow-lime-500/20",
         },
     ]
 
@@ -55,7 +55,7 @@ export function AboutSection() {
                             Seimi Innovation is a forward-thinking pharmaceutical company dedicated to bridging the gap between nutritional science and daily wellness.
                         </p>
                         <p className="mb-8 text-base leading-relaxed text-muted-foreground">
-                            Our mission is to empower individuals to take proactive control of their health through premium, scientifically-formulated supplements. We combine pharmaceutical-grade manufacturing precision with the finest natural ingredients to deliver products that truly make a difference.
+                            Our mission is to empower individuals to take proactive control of their health through premium, scientifically-formulated supplements. We combine nutraceutical manufacturing precision with the finest natural ingredients to deliver products that truly make a difference.
                         </p>
 
                         <motion.div
@@ -78,7 +78,8 @@ export function AboutSection() {
                             transition={{ ease: "linear", duration: 25, repeat: Infinity }}
                             className="grid grid-cols-2 gap-3 sm:gap-6"
                             // Disable animation on very small screens to prevent layout breaks
-                            style={{ animationPlayState: 'paused', '@media (min-width: 640px)': { animationPlayState: 'running' } } as any}
+                            // Disable animation on very small screens to prevent layout breaks
+                            // style={{ animationPlayState: 'paused', '@media (min-width: 640px)': { animationPlayState: 'running' } } as any}
                         >
                             {values.map((value, index) => (
                                 <motion.div

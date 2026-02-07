@@ -198,7 +198,7 @@ function ProductCard({
           <motion.div
             whileHover={{ scale: 1.1, rotateZ: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="relative mx-auto h-[200px] w-[120px] flex-shrink-0 md:mx-0 md:h-[280px] md:w-[160px]"
+            className="relative mx-auto h-[240px] w-[140px] flex-shrink-0 md:mx-0 md:h-[320px] md:w-[180px]"
           >
             <Image
               src={product.image || "/placeholder.svg"}
@@ -441,7 +441,7 @@ export function ProductShowcase() {
             Advanced Formulations
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            Discover our range of pharmaceutical-grade supplements designed for
+            Discover our range of nutraceutical supplements designed for
             optimal health and wellness.
           </p>
         </motion.div>

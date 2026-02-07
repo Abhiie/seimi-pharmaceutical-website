@@ -103,7 +103,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mx-auto mb-16 max-w-2xl text-pretty text-lg text-gray-400 md:text-xl"
           >
-            Advanced pharmaceutical-grade formulations designed to support brain
+            Advanced nutraceutical formulations designed to support brain
             health, liver function, and overall wellness. Made with the highest
             quality ingredients.
           </motion.p>
@@ -156,7 +156,7 @@ export function Hero() {
                             fill
                             className="object-contain drop-shadow-2xl"
                             sizes="250px"
-                            priority={index < 4}
+                            priority={index < 2}
                           />
                         </div>
 

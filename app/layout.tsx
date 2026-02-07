@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     default: 'Seimi Innovation | Premium Nutritional Supplements',
     template: '%s | Seimi Innovation'
   },
-  description: 'Innovation in Preventive Nutrition. Premium pharmaceutical-grade syrups, suspensions, and tablets for optimal health. Discover our science-backed nutritional supplements.',
+  description: 'Innovation in Preventive Nutrition. Premium nutraceutical syrups, suspensions, and tablets for optimal health. Discover our science-backed nutritional supplements.',
   keywords: [
     'nutritional supplements',
-    'pharmaceutical grade supplements',
+    'nutraceutical supplements',
     'preventive nutrition',
     'health supplements',
     'premium syrups',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     url: 'https://www.seimi-innovation.com',
     siteName: 'Seimi Innovation',
     title: 'Seimi Innovation | Premium Nutritional Supplements',
-    description: 'Innovation in Preventive Nutrition. Premium pharmaceutical-grade syrups, suspensions, and tablets for optimal health.',
+    description: 'Innovation in Preventive Nutrition. Premium nutraceutical syrups, suspensions, and tablets for optimal health.',
     images: [
       {
         url: '/images/logo.png',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Seimi Innovation | Premium Nutritional Supplements',
-    description: 'Innovation in Preventive Nutrition. Premium pharmaceutical-grade supplements for optimal health.',
+    description: 'Innovation in Preventive Nutrition. Premium nutraceutical supplements for optimal health.',
     images: ['/images/logo.png'],
     creator: '@seimiinnovation', // Update with actual Twitter handle
   },
@@ -97,7 +97,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en">
       <head>
         {/* Structured Data - Organization */}
         <script
@@ -107,7 +107,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'Seimi Innovation',
-              description: 'Innovation in Preventive Nutrition. Premium pharmaceutical-grade nutritional supplements.',
+              description: 'Innovation in Preventive Nutrition. Premium nutraceutical nutritional supplements.',
               url: 'https://www.seimi-innovation.com',
               logo: 'https://www.seimi-innovation.com/images/logo.png',
               contactPoint: {
@@ -127,7 +127,7 @@ export default function RootLayout({
               '@type': 'WebSite',
               name: 'Seimi Innovation',
               url: 'https://www.seimi-innovation.com',
-              description: 'Premium pharmaceutical-grade nutritional supplements for optimal health',
+              description: 'Premium nutraceutical nutritional supplements for optimal health',
               potentialAction: {
                 '@type': 'SearchAction',
                 target: {

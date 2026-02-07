@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
     title: 'Our Products - Premium Nutritional Supplements',
-    description: 'Explore our comprehensive range of premium pharmaceutical-grade nutritional supplements including syrups, tablets, and suspensions. Science-backed formulations for optimal health.',
+    description: 'Explore our comprehensive range of premium nutraceutical nutritional supplements including syrups, tablets, and suspensions. Science-backed formulations for optimal health.',
     keywords: [
         'nutritional supplements products',
         'omega-3 supplements',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         title: 'Our Products - Premium Nutritional Supplements | Seimi Innovation',
-        description: 'Explore our comprehensive range of premium pharmaceutical-grade nutritional supplements.',
+        description: 'Explore our comprehensive range of premium nutraceutical nutritional supplements.',
         url: 'https://www.seimi-innovation.com/products',
         type: 'website',
         images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Our Products - Premium Nutritional Supplements',
-        description: 'Explore our comprehensive range of premium pharmaceutical-grade nutritional supplements.',
+        description: 'Explore our comprehensive range of premium nutraceutical nutritional supplements.',
         images: ['/images/logo.png'],
     },
 }

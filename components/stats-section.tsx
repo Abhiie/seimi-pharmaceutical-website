@@ -29,32 +29,33 @@ function AnimatedNumber({ value }: { value: number }) {
 
 export function StatsSection() {
     const stats = [
-        { label: "", value: 25, suffix: "+", description: "Years Experience" },
-        { label: "", value: 25000, suffix: " sqft", description: "Facility Area" },
-        { label: "", value: 45, suffix: "+", description: "Countries Export" },
+        { label: "", value: 170, suffix: "+", description: "Research - Based Formulations" },
+        { label: "", value: 23, suffix: "+", description: "Patented Ingredients" },
+        { label: "", value: 40, suffix: "+", description: "Global market reach" },
     ]
 
     return (
-        <section className="py-24 bg-background">
+        <section className="py-24 bg-zinc-900 text-white">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
                     {stats.map((stat, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2, duration: 0.6 }}
-                            className="flex flex-col items-center p-6 rounded-3xl hover:bg-secondary/50 transition-colors"
-                        >
-                            <div className="font-serif text-5xl md:text-7xl font-bold text-primary mb-4 flex items-baseline">
-                                <AnimatedNumber value={stat.value} />
-                                <span className="text-3xl md:text-4xl ml-1">{stat.suffix}</span>
-                            </div>
-                            <div className="text-sm md:text-base font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                                {stat.description}
-                            </div>
-                        </motion.div>
+                        <div key={index} className="relative">
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.2, duration: 0.6 }}
+                                className="flex flex-col items-center p-8 rounded-3xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
+                            >
+                                <div className="font-serif text-5xl md:text-7xl font-bold text-primary mb-4 flex items-baseline drop-shadow-lg">
+                                    <AnimatedNumber value={stat.value} />
+                                    <span className="text-3xl md:text-4xl ml-1">{stat.suffix}</span>
+                                </div>
+                                <div className="text-sm md:text-base font-medium uppercase tracking-[0.2em] text-zinc-400">
+                                    {stat.description}
+                                </div>
+                            </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

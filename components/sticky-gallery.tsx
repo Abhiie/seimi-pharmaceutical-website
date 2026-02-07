@@ -156,7 +156,7 @@ function CardContent({ product }: { product: typeof galleryProducts[0] }) {
               fill
               className="object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
               sizes="280px"
-              priority
+
             />
           </div>
 

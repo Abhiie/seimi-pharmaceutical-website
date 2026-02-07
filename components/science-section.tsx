@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
-import { Microscope, Shield, Award, FlaskConical } from "lucide-react"
+import { Microscope, Shield, Award, FlaskConical, Zap } from "lucide-react"
 import Image from "next/image"
 
 const features = [
@@ -22,14 +22,9 @@ const features = [
     icon: <FlaskConical className="h-6 w-6" />,
     title: "Premium Ingredients",
     description:
-      "We source only the highest quality pharmaceutical-grade ingredients worldwide.",
+      "We source only the highest quality nutraceutical ingredients worldwide.",
   },
-  {
-    icon: <Award className="h-6 w-6" />,
-    title: "USA Collaboration",
-    description:
-      "Brand collaboration with DRHK Wellness LLC ensures international quality standards.",
-  },
+
 ]
 
 export function ScienceSection() {
@@ -66,7 +61,7 @@ export function ScienceSection() {
             </h2>
             <p className="mb-10 text-lg leading-relaxed text-muted-foreground">
               At Seimi, we believe in the power of preventive nutrition. Our
-              formulations combine traditional wisdom with modern pharmaceutical
+              formulations combine traditional wisdom with modern nutraceutical
               science to create supplements that truly make a difference in
               peoples lives.
             </p>
@@ -119,7 +114,7 @@ export function ScienceSection() {
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
-                  className="relative h-[400px] w-[200px]"
+                  className="relative h-[550px] w-[280px]"
                 >
                   <Image
                     src="/images/l-20carnosine-20syrup.png"
@@ -161,27 +156,24 @@ export function ScienceSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.7 }}
-                className="glass absolute -right-4 bottom-1/3 rounded-xl p-4"
+                className="glass absolute -right-8 bottom-1/3 rounded-xl p-4"
               >
                 <div className="flex items-center gap-3">
-                  <Image
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png"
-                    alt="USA"
-                    width={32}
-                    height={20}
-                    className="rounded object-cover"
-                    style={{ height: 'auto' }}
-                  />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20 text-amber-500">
+                    <Zap className="h-5 w-5" />
+                  </div>
                   <div>
                     <p className="text-xs font-semibold text-foreground">
-                      USA Collaboration
+                      Fast Absorption
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      DRHK Wellness LLC
+                      Liquid Formula
                     </p>
                   </div>
                 </div>
               </motion.div>
+
+
             </div>
           </motion.div>
         </div>
