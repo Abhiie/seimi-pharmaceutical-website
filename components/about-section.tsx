@@ -10,25 +10,25 @@ export function AboutSection() {
             icon: <ShieldCheck className="h-8 w-8" />,
             title: "Quality Assurance",
             description: "Rigorous standards at every step of manufacturing.",
-            color: "border-blue-500/40 bg-blue-500/15 text-blue-600 shadow-blue-500/10",
+            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
         },
         {
             icon: <Microscope className="h-8 w-8" />,
             title: "Research Driven",
             description: "Evidence-based formulations supported by clinical data.",
-            color: "border-purple-500/40 bg-purple-500/15 text-purple-600 shadow-purple-500/10",
+            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
         },
         {
             icon: <HeartHandshake className="h-8 w-8" />,
             title: "Customer Wellness",
             description: "Dedicated to improving lives through better health.",
-            color: "border-green-500/40 bg-green-500/15 text-green-600 shadow-green-500/10",
+            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
         },
         {
             icon: <Leaf className="h-8 w-8" />,
             title: "Ethical Standards",
             description: "Transparency and integrity in all our operations.",
-            color: "border-amber-500/40 bg-amber-500/15 text-amber-600 shadow-amber-500/10",
+            color: "border-primary/20 bg-primary/5 text-primary shadow-primary/10",
         },
     ]
 

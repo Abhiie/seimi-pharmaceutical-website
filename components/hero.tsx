@@ -18,12 +18,12 @@ export function Hero() {
 
   // Extended products array with details for the 3D carousel
   const carouselProducts = [
-    {
+    {	
       src: "/images/alfa-keta.png",
       name: "Alfa Keta Analogue",
       tagline: "Kidney Health",
       description: "Essential amino acids for kidney support.",
-      color: "#3B82F6",
+      color: "#F97316",
     },
     {
       src: "/images/digestive-enzyme.png",
@@ -37,35 +37,35 @@ export function Hero() {
       name: "Grape Seed",
       tagline: "Heart & Immune",
       description: "Potent antioxidant formula.",
-      color: "#A855F7",
+      color: "#F97316",
     },
      {
       src: "/images/5-htp.png",
       name: "5-HTP",
       tagline: "Mental Wellness",
       description: "Support for mood and sleep regulation.",
-      color: "#6366f1",
+      color: "#F97316",
     },
     {
       src: "/images/l-20carnosine-20syrup-20-20box.png",
       name: "L-Carnosine",
       tagline: "Brain Health",
       description: "Advanced formula for nerve function.",
-      color: "#EC4899",
+      color: "#F97316",
     },
     {
       src: "/images/omega-203-20syrup-20-20box.png",
       name: "Omega 3 Fish Oil",
       tagline: "Heart Health",
       description: "Premium fish oil for cardiovascular wellness.",
-      color: "#F59E0B",
+      color: "#F97316",
     },
   ]
 
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background pt-32"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black pt-32 text-white"
     >
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0">
@@ -90,7 +90,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-6 font-serif text-5xl font-bold leading-tight tracking-tight text-foreground md:text-7xl lg:text-8xl"
+            className="mb-6 font-serif text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl"
           >
             <span className="text-balance">Premium Health</span>
             <br />
@@ -101,7 +101,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mx-auto mb-16 max-w-2xl text-pretty text-lg text-muted-foreground md:text-xl"
+            className="mx-auto mb-16 max-w-2xl text-pretty text-lg text-gray-400 md:text-xl"
           >
             Advanced pharmaceutical-grade formulations designed to support brain
             health, liver function, and overall wellness. Made with the highest

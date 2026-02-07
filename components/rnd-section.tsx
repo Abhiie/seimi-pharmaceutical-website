@@ -13,9 +13,9 @@ const steps = [
         subtitle: "Discovery & Validation",
         description: "Our process begins with identifying potent, science-backed ingredients. We collaborate with international research labs to validate the efficacy of every bioactive compound before it enters our formulation cycle.",
         image: "/images/rnd-clinical-research.png",
-        color: "bg-orange-500",
-        lightColor: "bg-orange-50/10",
-        accent: "text-orange-600",
+        color: "bg-primary",
+        lightColor: "bg-primary/10",
+        accent: "text-primary",
     },
     {
         icon: <ClipboardCheck className="h-6 w-6 text-white" />,
@@ -23,9 +23,9 @@ const steps = [
         subtitle: "Bioavailability Excellence",
         description: "We don't just mix ingredients; we optimize them. Our labs focus on molecular stability and bioavailability, ensuring that every dose is absorbed efficiently by the body for maximum therapeutic impact.",
         image: "/images/rnd-formulation.png",
-        color: "bg-purple-500",
-        lightColor: "bg-purple-50/10",
-        accent: "text-purple-600",
+        color: "bg-primary",
+        lightColor: "bg-primary/10",
+        accent: "text-primary",
     },
     {
         icon: <CheckCircle2 className="h-6 w-6 text-white" />,
@@ -33,9 +33,9 @@ const steps = [
         subtitle: "Uncompromising Standards",
         description: "Every batch undergoes rigorous multi-stage testing. From raw material purity to finished product stability, our quality control exceeds international pharmaceutical benchmarks.",
         image: "/images/rnd-quality-testing.png",
-        color: "bg-pink-500",
-        lightColor: "bg-pink-50/10",
-        accent: "text-pink-600",
+        color: "bg-primary",
+        lightColor: "bg-primary/10",
+        accent: "text-primary",
     },
     {
         icon: <Factory className="h-6 w-6 text-white" />,
@@ -43,9 +43,9 @@ const steps = [
         subtitle: "GMP Certified Excellence",
         description: "Utilizing state-of-the-art automated lines in sterile, controlled environments. Our manufacturing process minimizes human error and guarantees consistency across every single unit produced.",
         image: "/images/rnd-manufacturing.png",
-        color: "bg-orange-500",
-        lightColor: "bg-orange-50/10",
-        accent: "text-orange-600",
+        color: "bg-primary",
+        lightColor: "bg-primary/10",
+        accent: "text-primary",
     },
     {
         icon: <Truck className="h-6 w-6 text-white" />,
@@ -53,9 +53,9 @@ const steps = [
         subtitle: "Integrity Maintained",
         description: "From our climate-controlled warehouse to your doorstep, we maintain the cold chain and structural integrity of our supplements, delivering premium health without compromise.",
         image: "/images/rnd-distribution.png",
-        color: "bg-green-500",
-        lightColor: "bg-green-50/10",
-        accent: "text-green-600",
+        color: "bg-primary",
+        lightColor: "bg-primary/10",
+        accent: "text-primary",
     },
 ]
 
@@ -69,7 +69,7 @@ export function RndSection() {
     })
 
     return (
-        <section id="rnd" ref={containerRef} className="relative">
+        <section id="rnd" ref={containerRef} className="relative bg-neutral-950 text-white py-24">
 
             <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
                 {/* Header Section - Appears first */}
@@ -83,10 +83,10 @@ export function RndSection() {
                         <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.3em] text-primary">
                             The Science of Life
                         </span>
-                        <h2 className="mb-6 font-serif text-5xl font-bold text-foreground md:text-7xl">
+                        <h2 className="mb-6 font-serif text-5xl font-bold text-white md:text-7xl">
                             From Lab to <span className="text-primary italic">Life</span>
                         </h2>
-                        <p className="mx-auto max-w-2xl text-lg text-muted-foreground leading-relaxed">
+                        <p className="mx-auto max-w-2xl text-lg text-gray-400 leading-relaxed">
                             Our commitment to innovation is mapped out in a meticulous process that ensures every product meets the highest pharmaceutical standards.
                         </p>
                     </motion.div>
@@ -161,13 +161,13 @@ export function RndSection() {
                                     <span className="h-[2px] w-8 bg-current" />
                                     Phase {index + 1}
                                 </div>
-                                <h3 className="mb-4 font-serif text-3xl font-bold text-foreground md:text-5xl lg:text-6xl tracking-tight">
+                                <h3 className="mb-4 font-serif text-3xl font-bold text-white md:text-5xl lg:text-6xl tracking-tight">
                                     {step.title}
                                 </h3>
                                 <p className="mb-6 text-xl font-medium text-primary/80 italic">
                                     {step.subtitle}
                                 </p>
-                                <p className="text-lg leading-relaxed text-muted-foreground/80 font-medium">
+                                <p className="text-lg leading-relaxed text-gray-400 font-medium">
                                     {step.description}
                                 </p>
 

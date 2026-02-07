@@ -11,7 +11,7 @@ const galleryProducts = [
     description:
       "Advanced brain-supporting formula with DHA for enhanced nerve function.",
     image: "/images/l-20carnosine-20syrup-20-20box-202_.png",
-    color: "#3B82F6", // Blue
+    color: "#F97316", // Orange
   },
   {
     name: "Omega 3 Fish Oil",
@@ -19,7 +19,7 @@ const galleryProducts = [
     description:
       "Premium fish oil syrup for cardiovascular and cognitive wellness.",
     image: "/images/omega-203-20syrup-20-20box.png",
-    color: "#F59E0B", // Amber/Gold
+    color: "#F97316", // Orange
   },
   {
     name: "Silymarin Liver Tonic",
@@ -27,7 +27,7 @@ const galleryProducts = [
     description:
       "Powerful liver tonic with natural ingredients for optimal detoxification.",
     image: "/images/silimarin-20syrup-20-20box.png",
-    color: "#22C55E", // Green
+    color: "#F97316", // Orange
   },
   {
     name: "Cranberry Syrup",
@@ -35,7 +35,7 @@ const galleryProducts = [
     description:
       "Natural cranberry extract for urinary tract and kidney support.",
     image: "/images/sei-20cranberry-20syrup-20box.png",
-    color: "#EC4899", // Pink
+    color: "#F97316", // Orange
   },
   {
     name: "Digestive Enzyme",
@@ -51,7 +51,7 @@ const galleryProducts = [
     description:
       "Potent antioxidant formula with Resveratrol.",
     image: "/images/grape-seed.png",
-    color: "#A855F7", // Purple
+    color: "#F97316", // Orange
   },
 ]
 
@@ -67,7 +67,7 @@ export function StickyGallery() {
   const rotateY = useTransform(scrollYProgress, [0, 1], [0, -360])
 
   return (
-    <section ref={containerRef} className="relative h-[300vh]">
+    <section ref={containerRef} className="relative h-[300vh] bg-orange-50">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
         
         {/* Header Content */}

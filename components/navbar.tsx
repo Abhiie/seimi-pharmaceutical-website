@@ -65,7 +65,7 @@ export function Navbar() {
             : "bg-transparent md:top-8 top-0 py-6"
           }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8" aria-label="Main navigation">
+        <nav className={`mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8 ${isScrolled ? "text-foreground" : "text-white"}`} aria-label="Main navigation">
           <Link href="/" className="flex items-center gap-2 group" aria-label="Seimi Innovation Home">
             <div className="relative h-12 w-32 md:h-14 md:w-40">
               <Image
@@ -84,7 +84,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-foreground/80 transition-all hover:text-primary relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                className={`text-sm font-medium transition-all hover:text-primary relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-primary after:transition-all hover:after:w-full ${isScrolled ? "text-foreground/80" : "text-white/90"}`}
               >
                 {link.label}
               </Link>
@@ -106,7 +106,7 @@ export function Navbar() {
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Toggle mobile menu"
-            className="rounded-lg p-2 text-foreground md:hidden hover:bg-secondary transition-colors"
+            className={`rounded-lg p-2 md:hidden hover:bg-white/10 transition-colors ${isScrolled ? "text-foreground hover:bg-secondary" : "text-white"}`}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

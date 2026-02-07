@@ -37,7 +37,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer id="contact" className="relative border-t border-border">
+    <footer id="contact" className="relative border-t border-border bg-black text-white">
       {/* Top section */}
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
@@ -59,7 +59,7 @@ export function Footer() {
                 />
               </div>
             </Link>
-            <p className="mb-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
+            <p className="mb-6 max-w-sm text-sm leading-relaxed text-gray-400">
               Innovation in Preventive Nutrition. We create premium
               pharmaceutical-grade supplements designed to support your overall
               health and wellness.
@@ -76,7 +76,7 @@ export function Footer() {
                   key={index}
                   href={social.href}
                   aria-label={`Follow us on ${social.label}`}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gray-400 transition-all hover:bg-primary hover:text-white"
                 >
                   {social.icon}
                 </Link>
@@ -94,7 +94,7 @@ export function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: catIndex * 0.1 }}
               >
-                <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+                <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
                   {category}
                 </h4>
                 <ul className="space-y-3">
@@ -102,7 +102,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                        className="text-sm text-gray-400 transition-colors hover:text-primary"
                       >
                         {link.label}
                       </Link>
@@ -121,15 +121,15 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-3"
           >
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Contact
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 text-primary" />
                 <div>
-                  <p className="text-sm text-foreground">support@seimei.us</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm text-white">support@seimei.us</p>
+                  <p className="text-xs text-gray-400">
                     Feedback & Assistance
                   </p>
                 </div>
@@ -137,17 +137,17 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 text-primary" />
                 <div>
-                  <p className="text-sm text-foreground">www.seimei.us</p>
-                  <p className="text-xs text-muted-foreground">Website</p>
+                  <p className="text-sm text-white">www.seimei.us</p>
+                  <p className="text-xs text-gray-400">Website</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 text-primary" />
                 <div>
-                  <p className="text-sm text-foreground">
+                  <p className="text-sm text-white">
                     Ahmedabad, Gujarat, India
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-gray-400">
                     Manufactured by: Aeron Lifescience Pvt. Ltd.
                   </p>
                 </div>
@@ -207,14 +207,14 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Seimei Innovation. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <span className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-gray-400">
               Nutritional Dietary Supplement
             </span>
-            <span className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-gray-400">
               Not For Medicinal Use
             </span>
           </div>

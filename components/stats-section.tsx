@@ -35,7 +35,7 @@ export function StatsSection() {
     ]
 
     return (
-        <section className="py-24">
+        <section className="py-24 bg-background">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
                     {stats.map((stat, index) => (
@@ -45,7 +45,7 @@ export function StatsSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2, duration: 0.6 }}
-                            className="flex flex-col items-center p-6"
+                            className="flex flex-col items-center p-6 rounded-3xl hover:bg-secondary/50 transition-colors"
                         >
                             <div className="font-serif text-5xl md:text-7xl font-bold text-primary mb-4 flex items-baseline">
                                 <AnimatedNumber value={stat.value} />
