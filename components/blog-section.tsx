@@ -9,19 +9,19 @@ const blogs = [
         title: "The Future of Preventive Healthcare",
         date: "March 15, 2024",
         excerpt: "Exploring how nutraceuticals are shaping the future of daily wellness and disease prevention.",
-        image: "/images/blog-1.jpg"
+        image: "/images/blog-1.png"
     },
     {
         title: "Understanding Bioavailability",
         date: "March 10, 2024",
         excerpt: "Why the absorption rate of your supplements matters more than the dosage.",
-        image: "/images/blog-2.jpg"
+        image: "/images/blog-2.png"
     },
     {
         title: "Sustainable Manufacturing",
         date: "March 5, 2024",
         excerpt: "How Seimi is reducing its carbon footprint through eco-friendly production practices.",
-        image: "/images/blog-3.jpg"
+        image: "/images/blog-3.png"
     }
 ]
 
@@ -74,9 +74,12 @@ export function BlogSection() {
                             aria-label={`Read blog post: ${blog.title}`}
                         >
                             <div className="relative aspect-[4/3] w-full bg-secondary/20 overflow-hidden">
-                                <div className="absolute inset-0 bg-secondary/30 flex items-center justify-center">
-                                    <span className="text-muted-foreground text-sm">Image Placeholder</span>
-                                </div>
+                                <Image
+                                    src={blog.image}
+                                    alt={blog.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
                                 {/* Scale Effect on Hover */}
                                 <div className="absolute inset-0 bg-primary/0 transition-colors group-hover:bg-primary/5" />
                             </div>

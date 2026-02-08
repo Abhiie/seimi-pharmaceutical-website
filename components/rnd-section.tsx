@@ -4,9 +4,29 @@ import React from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import Image from "next/image"
-import { FlaskConical, ClipboardCheck, Factory, Truck, CheckCircle2 } from "lucide-react"
+import { FlaskConical, ClipboardCheck, Factory, Truck, CheckCircle2, Headset, FileText } from "lucide-react"
 
 const steps = [
+    {
+        icon: <Headset className="h-6 w-6 text-white" />,
+        title: "Initial Contact and Inquiry",
+        subtitle: "Understanding Your Needs",
+        description: "We start by listening to your specific requirements and objectives to tailor a solution that fits your vision perfectly.",
+        image: "/images/rnd-clinical-research.png",
+        color: "bg-primary",
+        lightColor: "bg-primary/10",
+        accent: "text-primary",
+    },
+    {
+        icon: <FileText className="h-6 w-6 text-white" />,
+        title: "Quotation against Request",
+        subtitle: "Transparent Pricing",
+        description: "We provide detailed and transparent quotations based on your specific formulation and manufacturing needs, ensuring value and clarity.",
+        image: "/images/rnd-formulation.png",
+        color: "bg-primary",
+        lightColor: "bg-primary/10",
+        accent: "text-primary",
+    },
     {
         icon: <FlaskConical className="h-6 w-6 text-white" />,
         title: "Clinical Research",

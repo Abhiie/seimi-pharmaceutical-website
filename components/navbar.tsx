@@ -32,10 +32,10 @@ export function Navbar() {
       <div className="hidden bg-primary text-primary-foreground py-2 text-xs md:block relative z-50">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
           <div className="flex items-center gap-6">
-            <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-white/80 transition-colors">
+            {/* <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-white/80 transition-colors">
               <Phone className="h-3 w-3" />
               <span>+1 (555) 123-4567</span>
-            </a>
+            </a> */}
             <a href="mailto:info@seimi.com" className="flex items-center gap-2 hover:text-white/80 transition-colors">
               <Mail className="h-3 w-3" />
               <span>info@seimi.com</span>

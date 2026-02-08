@@ -92,9 +92,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="mb-6 font-serif text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl"
           >
-            <span className="text-balance">Premium Health</span>
+            <span className="text-balance">Quality Medicine</span>
             <br />
-            <span className="text-primary">Supplements</span>
+            <span className="text-primary">Trusted Manufacturing Process</span>
           </motion.h1>
 
           <motion.p

@@ -20,10 +20,10 @@ export default function Home() {
       {/* <ProductShowcase /> */}
       <ScienceSection />
       <StickyGallery />
+      <BlogSection />
 
       {/* <CoreValues /> */}
       <StatsSection />
-      {/* <BlogSection /> */}
       <Footer />
     </main>
   )

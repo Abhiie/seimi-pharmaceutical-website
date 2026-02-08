@@ -101,7 +101,7 @@ export function ScienceSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative mx-auto aspect-square max-w-lg">
+            <div className="relative mx-auto aspect-square max-w-2xl">
               {/* Glowing background */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 blur-3xl" />
 
@@ -114,15 +114,15 @@ export function ScienceSection() {
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
-                  className="relative h-[550px] w-[280px]"
+                  className="relative h-[800px] w-[600px]"
                 >
                   <Image
-                    src="/images/l-20carnosine-20syrup.png"
-                    alt="L-Carnosine Syrup"
+                    src="/images/l-carnosine-dha-bottle.png"
+                    alt="L-Carnosine with DHA Syrup"
                     fill
                     className="object-contain drop-shadow-2xl transition-all duration-500 opacity-0"
                     onLoadingComplete={(img) => img.classList.remove("opacity-0")}
-                    sizes="200px"
+                    sizes="600px"
                   />
                   <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-primary/5 blur-3xl" />
                 </motion.div>
