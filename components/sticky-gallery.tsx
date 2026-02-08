@@ -55,9 +55,6 @@ const galleryProducts = [
   },
 ]
 
-// Duplicate products to ensure a long smooth flow
-const streamProducts = [...galleryProducts, ...galleryProducts, ...galleryProducts]
-
 export function StickyGallery() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -65,228 +62,119 @@ export function StickyGallery() {
     offset: ["start start", "end end"],
   })
 
-  // Shorten the scroll distance for quicker gratification
-  const activeIndex = useTransform(scrollYProgress, [0, 1], [0, streamProducts.length])
+  // Rotate the carousel based on scroll
+  // We want to rotate a full 360 degrees (or more) over the scroll distance
+  const rotateY = useTransform(scrollYProgress, [0, 1], [0, -360])
 
   return (
-    <section ref={containerRef} className="relative h-[350vh] bg-orange-50/20"> 
-      <div className="sticky top-0 h-screen w-full overflow-hidden perspective-[1000px]">
-       
-       {/* Ambient Depth Background - Absolute Layer */}
-       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white via-orange-50/30 to-white">
-          <FloatingParticle className="top-[30%] left-[20%] bg-blue-500/10 w-[500px] h-[500px] blur-[100px]" delay={0} />
-          <FloatingParticle className="bottom-[20%] right-[20%] bg-orange-500/10 w-[600px] h-[600px] blur-[120px]" delay={2} />
-          {/* Grid lines for depth perception */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-      </div>
-
-       {/* Content Layer - Relative on top */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center">
+    <section ref={containerRef} className="relative h-[300vh] bg-orange-50">
+      <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
         
-        {/* Header - Positioned absolutely at top so it doesn't push content */}
-        <div className="absolute top-4 z-20 w-full text-center">
-            <h2 className="text-4xl font-serif font-bold text-foreground">
-                <span className="text-primary">Deep</span> Focus
-            </h2>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted-foreground/70">
-                Precision Engineered Wellness
-            </p>
-        </div>
+        {/* Header Content */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="absolute top-12 z-10 mx-auto max-w-2xl px-6 text-center"
+        >
+          <span className="mb-2 inline-block text-xs font-medium uppercase tracking-[0.2em] text-primary">
+            360° Product View
+          </span>
+          <h2 className="mb-4 font-serif text-4xl font-bold text-foreground">
+            Complete Wellness <span className="text-primary">Solutions</span>
+          </h2>
+          <p className="text-muted-foreground">
+            Scroll to rotate the carousel and explore our range.
+          </p>
+        </motion.div>
 
-        {/* The Stream Container - Absolute centered */}
-        <div className="absolute inset-0 flex h-full w-full items-center justify-center transform-3d z-10 pointer-events-none"> 
-             {streamProducts.map((product, index) => {
-                 return (
-                     <div key={`${product.name}-${index}`} className="pointer-events-auto flex items-center justify-center">
-                        <StreamItem 
-                            product={product} 
-                            index={index} 
-                            activeIndex={activeIndex} 
-                        />
-                     </div>
-                 )
-             })}
+        {/* 3D Scene Viewport */}
+        <div className="flex h-[600px] w-full items-center justify-center perspective-[2000px]">
+          {/* Carousel Container */}
+          <motion.div
+            style={{ 
+              rotateY,
+              transformStyle: "preserve-3d",
+            }}
+            className="relative flex h-[400px] w-[300px] items-center justify-center"
+          >
+            {/* Duplicate products to create a denser circle (12 items) */}
+            {[...galleryProducts, ...galleryProducts].map((product, index) => {
+              const count = galleryProducts.length * 2
+              const radius = 650 // Increased radius for more items
+              const angle = (index / count) * 360
+
+              return (
+                <div
+                  key={`${product.name}-${index}`}
+                  className="absolute flex h-[400px] w-[280px] origin-center items-center justify-center p-2"
+                  style={{
+                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                    backfaceVisibility: "hidden", 
+                  }}
+                >
+                  <CardContent product={product} />
+                </div>
+              )
+            })}
+          </motion.div>
         </div>
         
-        {/* Scroll Hint */}
-        <div className="absolute bottom-6 left-0 right-0 z-20 flex flex-col items-center gap-2 opacity-50">
-             <span className="text-[9px] uppercase tracking-widest text-foreground/80 font-bold">Scroll to Explore</span>
-             <div className="h-8 w-[1px] bg-foreground/20" />
-        </div>
-      </div>
-      
+        {/* Scroll Indicator */}
+         <div className="absolute bottom-12 flex flex-col items-center gap-2 opacity-50">
+            <div className="h-12 w-[1px] bg-foreground/20"></div>
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Scroll to Rotate</span>
+         </div>
       </div>
     </section>
   )
 }
 
-function StreamItem({ 
-    product, 
-    index, 
-    activeIndex 
-}: { 
-    product: typeof galleryProducts[0] 
-    index: number
-    activeIndex: any
-}) {
-    // Logic:
-    // Calculate distance from the "active" floating index.
-    // diff = activeIndex - index
-    // If diff is 0, we are at the screen.
-    // If diff is negative (e.g. -5), we are 5 "units" deep in the background.
-    // If diff is positive (e.g. +1), we have passed the camera.
-    
-    // Z-Position:
-    const zStep = 900 // Increased spacing for more distinct "stations"
-    
-    const zPosition = useTransform(activeIndex, (current: number) => {
-        const diff = index - current
-        return diff * zStep
-    })
-
-    // Opacity:
-    // Fade in from deep. 
-    const opacity = useTransform(zPosition, (z: number) => {
-        if (z > 300) return 0 // Passed camera
-        if (z < -3500) return 0 // Too deep
-        
-        // Fully visible in the "active zone"
-        if (z > -1200) return 1 
-        
-        // Fade in gradually from distance
-        return 1 - (Math.abs(z + 1200) / 2300)
-    })
-
-    // Scale:
-    // Not strictly needed with CSS perspective, but let's clamp it so distant items aren't microscopic pixels,
-    // or to add extra "punch" as it hits close range.
-    // Actually, let standard perspective handle scale, it's more natural.
-    
-    // Blur Effect:
-    // Blur when deep. Crisp at 0.
-    const blur = useTransform(zPosition, (z: number) => {
-        if (z > 100) return "20px"
-        if (z < -500) return "4px"
-        return "0px"
-    })
-    
-    // Is Active? (Roughly centered)
-    // Used for the specific effects
-    const isActive = useTransform(zPosition, (z: number) => Math.abs(z) < 200 ? 1 : 0)
-
-    return (
-        <motion.div
-            className="absolute flex items-center justify-center will-change-transform" // Optimized for performance
-            style={{
-                z: zPosition,
-                opacity: opacity,
-                filter: useTransform(blur, (b) => `blur(${b})`),
-            }}
-        >
-             <CardContent product={product} index={index} isActive={isActive} />
-        </motion.div>
-    )
-}
-
-function FloatingParticle({ className, delay }: { className?: string, delay: number }) {
-    return (
-        <motion.div 
-            animate={{ 
-                y: [0, -30, 0],
-                opacity: [0.3, 0.6, 0.3],
-                scale: [1, 1.2, 1]
-            }}
-            transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: delay
-            }}
-            className={`absolute rounded-full blur-[50px] mix-blend-multiply ${className}`}
-        />
-    )
-}
-
-function CardContent({ product, index, isActive }: { product: typeof galleryProducts[0]; index: number; activeIndex?: any; isActive?: any }) {
-  // We can use the isActive motion value to drive specific focus states
-  // For now, let's just make the card look awesome
-  
+function CardContent({ product }: { product: typeof galleryProducts[0] }) {
   return (
-    <motion.div 
-      className="group relative h-[600px] w-[500px] overflow-hidden rounded-[3rem] border border-white/40 bg-white/60 p-8 shadow-2xl backdrop-blur-xl transition-all duration-500"
+    <div 
+      className="group relative h-full w-full overflow-hidden rounded-3xl border p-6 shadow-xl transition-all duration-500"
       style={{
-        boxShadow: `0 40px 80px -20px ${product.color}50`,
-        borderColor: `${product.color}40`
+        borderColor: `${product.color}40`, 
+        background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.90) 100%)`, // High opacity white background
+        boxShadow: `0 8px 32px -8px ${product.color}20` 
       }}
     >
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-white/80 to-white/20 opacity-80" />
-      
-      {/* Scanning Light Effect - Horizontal line sweeping down */}
-      <motion.div 
-        animate={{ top: ["-10%", "110%"] }}
-        transition={{ 
-            duration: 3, 
-            repeat: Infinity, 
-            ease: "linear",
-            delay: index * 1 // Offset scan for each card
-        }}
-        className="absolute left-0 right-0 h-[2px] z-10 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"
-      />
-      <motion.div 
-        animate={{ top: ["-10%", "110%"] }}
-        transition={{ 
-            duration: 3, 
-            repeat: Infinity, 
-            ease: "linear",
-            delay: index * 1
-        }}
-        className="absolute left-0 right-0 h-[20px] z-10 bg-gradient-to-r from-transparent via-primary/10 to-transparent blur-md"
-      />
+      {/* Glossy sheen */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-20" />
       
       {/* Colored glow spot */}
-      <motion.div 
-        animate={{ opacity: [0.1, 0.3, 0.1] }}
-        transition={{ 
-            duration: 3, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-        }}
-        className="absolute -top-20 -right-20 h-80 w-80 rounded-full blur-[100px]"
+      <div 
+        className="absolute -top-20 -right-20 h-40 w-40 rounded-full blur-[60px] opacity-40 transition-opacity group-hover:opacity-60"
         style={{ background: product.color }}
       />
       
-      {/* Decorative 'Deep Think' Tech Elements */}
-      <div className="absolute top-6 left-6 text-[10px] font-mono tracking-widest text-foreground/40 font-bold z-20">
-          ID-{index.toString().padStart(3, '0')} // SEIMI-LABS
-      </div>
-
       <div className="relative z-10 flex h-full flex-col">
-          {/* Image Container - Larger */}
-          <div className="relative flex-[1.5] overflow-hidden rounded-3xl shadow-sm mb-6">
+          <div className="relative flex-1">
             <Image
               src={product.image || "/placeholder.svg"}
               alt={product.name}
               fill
-              className="object-contain p-6 drop-shadow-2xl transition-transform duration-700 group-hover:scale-110" 
-              sizes="(max-width: 768px) 100vw, 500px"
+              className="object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
+              sizes="280px"
+
             />
           </div>
 
-        <div className="mt-2 text-center">
-            <h3 className="mb-2 font-serif text-4xl font-bold text-gray-900 leading-tight tracking-tight">
+        <div className="mt-4 text-center">
+            <h3 className="mb-1 font-serif text-xl font-bold text-foreground">
               {product.name}
             </h3>
             <p 
-              className="mb-3 text-xs font-bold uppercase tracking-widest"
+              className="mb-2 text-xs font-medium uppercase tracking-wider"
               style={{ color: product.color }}
             >
               {product.tagline}
             </p>
-            <p className="line-clamp-3 text-base text-gray-600 leading-relaxed font-medium px-4">
+            <p className="line-clamp-2 text-xs text-muted-foreground">
               {product.description}
-            </p> 
+            </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
